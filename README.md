@@ -1,5 +1,11 @@
 # Antigravity Quota Monitor
 
+Since Google has hidden this inside alot of bullshit, I built this instead so I dont have to keep open two silly windows to see my quotas at any given time.
+
+Anyway, here is the readme.md AI bullshit below, enjoy.
+
+---------
+
 A professional VS Code extension designed to provide real-time visibility into your Antigravity AI model usage quotas. Never get caught off guard by quota limits again.
 
 ![AG Quota Overview](media/screenshot.png)
