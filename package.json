@@ -1,0 +1,56 @@
+{
+  "name": "antigravity-quota",
+  "displayName": "Antigravity Quota",
+  "description": "Real-time usage quotas for Antigravity AI models",
+  "version": "1.0.0",
+  "publisher": "antigravity",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "antigravity-quota.view",
+          "name": "Antigravity Quotas",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "antigravity-quota.refresh",
+        "title": "Refresh Quotas",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "antigravity-quota.openDashboard",
+        "title": "Antigravity: Open Quota Dashboard",
+        "icon": "$(dashboard)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "antigravity-quota.refresh",
+          "when": "view == antigravity-quota.view",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antigravity/antig-ext"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0"
+  }
+}

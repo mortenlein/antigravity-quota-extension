@@ -1,0 +1,161 @@
+:root {
+    --accent: #3794ef;
+    --danger: #ef473a;
+    --warning: #ffbd2e;
+    --success: #27c93f;
+    --text-muted: #888;
+    --glass-bg: rgba(30, 30, 30, 0.4);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    padding: 10px;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11px;
+    background: transparent;
+    overflow-x: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    font-size: 11px;
+    font-weight: 700;
+    margin: 0;
+    opacity: 0.9;
+    letter-spacing: 0.2px;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* LED CIRCLE STYLES */
+.led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+}
+
+.led::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.led-healthy {
+    background: radial-gradient(circle at 30% 30%, #4eff4e, #008000);
+    box-shadow: 0 0 6px var(--success);
+}
+
+.led-warning {
+    background: radial-gradient(circle at 30% 30%, #ffff7a, #b3b300);
+    box-shadow: 0 0 6px var(--warning);
+}
+
+.led-danger {
+    background: radial-gradient(circle at 30% 30%, #ff4e4e, #800000);
+    box-shadow: 0 0 6px var(--danger);
+}
+
+.led-exhausted {
+    background: #333;
+}
+
+/* QUOTA ROW LAYOUT */
+.quota-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.model-label {
+    flex: 1;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 120px;
+}
+
+.progress-wrap {
+    width: 60px;
+    margin: 0 10px;
+    background: #333;
+    height: 6px;
+    border-radius: 1px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.bar {
+    height: 100%;
+    background: #ccc;
+    transition: width 0.5s ease;
+}
+
+.stats-text {
+    font-family: 'Consolas', monospace;
+    font-size: 10px;
+    color: #ccc;
+    white-space: nowrap;
+    min-width: 100px;
+    text-align: right;
+}
+
+.footer {
+    display: none;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 12px;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-msg {
+    color: var(--danger);
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+}
