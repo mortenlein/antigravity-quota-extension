@@ -287,13 +287,22 @@ function parseQuotaResponse(response) {
 
     for (const config of clientConfigs) {
         const qInfo = config.quotaInfo || config.quota_info || config.quota || {};
-        const remainingFraction = qInfo.remainingFraction ?? 1;
+        const resetAtSource = qInfo.resetAt || qInfo.reset_at || qInfo.resetAtMs || qInfo.resetTime;
+        
+        let remainingFraction = qInfo.remainingFraction ?? qInfo.remaining_fraction;
+        
+        // Resilience check: if we have a reset time but no remainingFraction, 
+        // it likely means the value is 0 and was omitted by the API serializer.
+        // If we have NEITHER, we assume unlimited/100% (or truly no quota).
+        if (remainingFraction === undefined || remainingFraction === null) {
+            remainingFraction = resetAtSource ? 0 : 1;
+        }
+
         const remainingPercent = Number((remainingFraction * 100).toFixed(2));
         const modelId = config.modelOrAlias?.model || config.modelOrAlias || 'unknown';
         const label = config.label || getDisplayName(modelId);
         
         // Resilience check for reset time fields
-        const resetAtSource = qInfo.resetAt || qInfo.reset_at || qInfo.resetAtMs || qInfo.resetTime;
         const resetAt = resetAtSource ? (typeof resetAtSource === 'object' ? resetAtSource : new Date(resetAtSource).getTime()) : null;
 
         models.push({

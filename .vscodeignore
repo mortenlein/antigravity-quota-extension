@@ -1,0 +1,15 @@
+.git/**
+.vscode/**
+.gitignore
+.vscodeignore
+node_modules/**
+package-lock.json
+*.vsix
+README.md (if you want to keep it simple, but usually it's included)
+# Keep README.md and icons
+!media/**
+!extension.js
+!quota-service.js
+!webview-provider.js
+!package.json
+!README.md
